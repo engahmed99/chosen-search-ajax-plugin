@@ -39,8 +39,53 @@
                 </div>
             </div>
 
+            <div>
+                <div class="panel panel-danger">
+                    <div class="panel-heading">
+                        Usage
+                    </div>
+                    <div class="panel-body">
+                        <h4>Import these files</h4>
+                        <pre>
+// CSS
+&lt;link rel="stylesheet" href="css/chosen.min.css">
+// JS
+&lt;script src="js/jquery.min.js" type="text/javascript">&lt;/script>
+&lt;script src="js/chosen.jquery.min.js" type="text/javascript">&lt;/script>
+&lt;script src="js/chosen_ajax.js" type="text/javascript">&lt;/script>
+                        </pre>
+<br/>
+                        <h4>To use it call chosen_ajax function and you can use any of <a href="https://harvesthq.github.io/chosen/options.html">chosen options</a>. But it is mandatory to set ajax_base_url which is the server url.</h4>
+                        <pre>
+$(".chosen-select").chosen_ajax({
+    allow_single_deselect: true,
+    ajax_base_url: "http://asamir.local/chosen-search-ajax-plugin/server.php"
+});
+                        </pre>
+<br/>
+                        <h4>The server must return JSON array as a response in this structure</h4>
+                        <pre>
+[
+    [value, label],
+    [value, label],
+    [value, label],
+]             
+e.x.
+[
+    ['EG', 'Egypt'],
+    ['US', 'United Stated'],
+    ['UK', 'United Kingdom'],
+]               
+                        </pre>
+                    </div>
+                    <div class="panel-footer">
+
+                    </div>
+
+                </div>
+            </div>
             <div style="text-align: center; padding: 5px; bottom: 0px; width: 100%" class="alert-success">
-                <h5>© 2018 Copyrights: <a href="#">Ahmed Samir</a> | <a href="https://github.com/engahmed99/laravel-in-db-performance-monitor">GitHub</a></h5>
+                <h5><a href="#">Ahmed Samir</a> | <a href="https://github.com/engahmed99/laravel-in-db-performance-monitor">GitHub</a></h5>
             </div>
         </div>
         <script src="js/jquery-1.12.4.min.js" type="text/javascript"></script>

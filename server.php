@@ -3,10 +3,9 @@
 /**
  * You must return JSON object 
  * [
- *  [key, value],
- *  [key, value],
- *  [key, value],
- *  [key, value],
+ *  [value, label],
+ *  [value, label],
+ *  [value, label],
  * ]
  */
 $input = preg_quote(strtoupper($_POST['search']), '~');

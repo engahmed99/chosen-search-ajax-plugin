@@ -1,3 +1,10 @@
+/*
+ * Developed by Ahmed Samir
+ * 
+ * https://github.com/engahmed99
+ * 
+ */
+
 (function ($) {
 
     // Ajax objects holder
@@ -27,7 +34,8 @@
                 var val = select.val();
                 var val_str = val_str = JSON.stringify(val);
 
-                ajax_xhr_object[key].abort();   // Abort previous ajax request
+                // Abort previous ajax request
+                ajax_xhr_object[key].abort();   
                 var xhr = $.ajax({
                     url: options.ajax_base_url,
                     method: "POST",
