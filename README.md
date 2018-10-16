@@ -1,8 +1,10 @@
 # Chosen Search Ajax
-Chosen Search Ajax is a plugin built on the top of [Chosen v1.8.7](https://harvesthq.github.io/chosen/ "Chosen v1.8.7") plugin to add search by ajax in the select options.
+Chosen Search Ajax is a plugin built on the top of [Chosen v1.8.7](https://harvesthq.github.io/chosen/ "Chosen v1.8.7") plugin to add search by ajax in the select options. 
 
 Please refer to [https://harvesthq.github.io/chosen/](https://harvesthq.github.io/chosen/ "https://harvesthq.github.io/chosen/") for more information about chosen and it's options.
 
+
+[Demo](http://asamirdemos.codeagroup.net/chosen-search-ajax-plugin "Demo")
 
 ## Usage
 
