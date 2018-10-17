@@ -32,22 +32,18 @@
                         || (options.hasOwnProperty('ajax_min_chars') && search_term.length < options.ajax_min_chars))
                     return true;
                 $(this).attr("data-search", search_term);
+
                 var val = select.val();
-                var val_str = val_str = JSON.stringify(val);
 
                 // Set Method
                 if (!options.hasOwnProperty('ajax_method'))
                     options.ajax_method = "GET";
 
                 // Set data
-                var ajax_data = {
-                    search: search_term,
-                    value: val_str
-                };
                 if (options.hasOwnProperty('ajax_data'))
-                    $.extend(options.ajax_data, ajax_data);
+                    options.ajax_data.search = search_term;
                 else
-                    options.ajax_data = ajax_data;
+                    options.ajax_data = {search: search_term};
 
                 // Abort previous ajax request
                 ajax_xhr_object[key].abort();
@@ -61,7 +57,7 @@
                         if (data.length == 0)
                             return true;
                         // Clear options
-                        select.html('');
+                        select.find('option:not(:selected)').remove();
                         chosen.find('ul.chosen-results').html('');
                         // Set new options
                         $.each(data, function (i, item) {

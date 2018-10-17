@@ -15,18 +15,8 @@ $countries = array("AFGHANISTAN", "ALBANIA", "ALGERIA", "AMERICAN SAMOA", "ANDOR
 // Search
 $result = preg_grep('~' . $input . '~', $countries);
 
-// Get and adjust the choosen values
-$values = json_decode($_POST['value'], true);
-if (!$values)
-    $values = [];
-if ($values && !is_array($values))
-    $values = [$values];
-
 // Set the final result + the choosen values
 $final_res = [];
-foreach ($values as $v)
-    if (!in_array($v, $result))
-        $final_res[] = [$v, $v];
 foreach ($result as $i => $res)
     $final_res[] = [$res, $res];
 

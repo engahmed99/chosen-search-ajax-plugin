@@ -63,16 +63,14 @@ $(".chosen-select").chosen_ajax({
     // Ajax options
     ajax_base_url: "http://asamir.local/chosen-search-ajax-plugin/server.php",  // Mandatory
     ajax_method: "POST",                            // Default GET
-    ajax_data: {type: 'A', extra: 123456789},       // To set extra data + {search & value fields}
+    ajax_data: {type: 'A', extra: 123456789},       // To set extra data + {search field}
     ajax_min_chars: 2                               // Minimum characters to send ajax request
 });
                         </pre>
                         <br/>
                         <h4>After finishing the search e.x.</h4>
                         <pre>
-select * from customers where countries like %{$_GET[search]}% or id = {$_GET[value]} 
-
-Hint: I used  or id = %{$_GET[value]}  because you must return the selected row also.
+select id, name from customers where countries like %{$_GET[search]}%
                         </pre>
                         <h4>The server must return a JSON array as a response in this structure</h4>
                         <pre>

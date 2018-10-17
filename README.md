@@ -26,15 +26,14 @@ Please refer to [https://harvesthq.github.io/chosen/](https://harvesthq.github.i
 	    // Ajax options
 	    ajax_base_url: "http://asamir.local/chosen-search-ajax-plugin/server.php",  // Mandatory
 	    ajax_method: "POST",                            // Default GET
-	    ajax_data: {type: 'A', extra: 123456789},       // To set extra data + {search & value fields}
+	    ajax_data: {type: 'A', extra: 123456789},       // To set extra data + {search field}
 	    ajax_min_chars: 2                               // Minimum characters to send ajax request
     });
 
 ### After finishing the search e.x.
     
-    select * from customers where countries like %{$_GET[search]}% or id = {$_GET[value]} 
+    select id, name from customers where countries like %{$_GET[search]}%
     
-    Hint: I used  or id = %{$_GET[value]}  because you must return the selected row also.
     
 
 ### The server must return a JSON array as a response in this structure
