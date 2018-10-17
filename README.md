@@ -22,11 +22,22 @@ Please refer to [https://harvesthq.github.io/chosen/](https://harvesthq.github.i
 ### To use it call [ chosen\_ajax ] function and you can use any of chosen options. But it is mandatory to set [ ajax\_base\_url ] which is the server url.
 
     $(".chosen-select").chosen_ajax({
-	    allow_single_deselect: true,
-	    ajax_base_url: "http://asamir.local/chosen-search-ajax-plugin/server.php"
+	    allow_single_deselect: true, // Normal chosen option
+	    // Ajax options
+	    ajax_base_url: "http://asamir.local/chosen-search-ajax-plugin/server.php",  // Mandatory
+	    ajax_method: "POST",                            // Default GET
+	    ajax_data: {type: 'A', extra: 123456789},       // To set extra data + {search & value fields}
+	    ajax_min_chars: 2                               // Minimum characters to send ajax request
     });
 
-### The server must return JSON array as a response in this structure
+### After finishing the search e.x.
+    
+    select * from customers where countries like %{$_GET[search]}% or id = {$_GET[value]} 
+    
+    Hint: I used  or id = %{$_GET[value]}  because you must return the selected row also.
+    
+
+### The server must return a JSON array as a response in this structure
 
     [
 	    [value, label],

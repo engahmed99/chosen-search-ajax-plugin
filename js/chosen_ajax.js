@@ -28,22 +28,34 @@
             chosen.find('.search-field input, .chosen-search input').keyup(function () {
                 var old_search_term = $(this).attr("data-search");
                 var search_term = $(this).val();
-                if (!search_term || old_search_term == search_term)
+                if (!search_term || old_search_term == search_term
+                        || (options.hasOwnProperty('ajax_min_chars') && search_term.length < options.ajax_min_chars))
                     return true;
                 $(this).attr("data-search", search_term);
                 var val = select.val();
                 var val_str = val_str = JSON.stringify(val);
 
+                // Set Method
+                if (!options.hasOwnProperty('ajax_method'))
+                    options.ajax_method = "GET";
+
+                // Set data
+                var ajax_data = {
+                    search: search_term,
+                    value: val_str
+                };
+                if (options.hasOwnProperty('ajax_data'))
+                    $.extend(options.ajax_data, ajax_data);
+                else
+                    options.ajax_data = ajax_data;
+
                 // Abort previous ajax request
-                ajax_xhr_object[key].abort();   
+                ajax_xhr_object[key].abort();
                 var xhr = $.ajax({
                     url: options.ajax_base_url,
-                    method: "POST",
-                    type: "POST",
-                    data: {
-                        search: search_term,
-                        value: val_str
-                    },
+                    method: options.ajax_method,
+                    type: options.ajax_method,
+                    data: options.ajax_data,
                     dataType: "json",
                     success: function (data) {
                         if (data.length == 0)

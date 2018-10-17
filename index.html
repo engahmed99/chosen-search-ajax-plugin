@@ -17,7 +17,7 @@
 
                 <br/>
 
-                <h5 class="alert-warning">Try search for any country e.x. Chana, Canada, Brazil ...</h5>
+                <h5 class="alert-warning">Try search for any country e.x. Chana, Canada, Brazil ... Type at least two characters</h5>
                 <div class="form-group">
                     <label for="single-country-elem">Single Country: </label>
                     <select data-placeholder="Choose a Country..." class="form-control chosen-select" id="single-country-elem">
@@ -55,16 +55,26 @@
 &lt;script src="js/chosen.jquery.min.js" type="text/javascript">&lt;/script>
 &lt;script src="js/chosen_ajax.js" type="text/javascript">&lt;/script>
                         </pre>
-<br/>
+                        <br/>
                         <h4>To use it call chosen_ajax function and you can use any of <a href="https://harvesthq.github.io/chosen/options.html">chosen options</a>. But it is mandatory to set ajax_base_url which is the server url.</h4>
                         <pre>
 $(".chosen-select").chosen_ajax({
-    allow_single_deselect: true,
-    ajax_base_url: "http://asamir.local/chosen-search-ajax-plugin/server.php"
+    allow_single_deselect: true, // Normal chosen option
+    // Ajax options
+    ajax_base_url: "http://asamir.local/chosen-search-ajax-plugin/server.php",  // Mandatory
+    ajax_method: "POST",                            // Default GET
+    ajax_data: {type: 'A', extra: 123456789},       // To set extra data + {search & value fields}
+    ajax_min_chars: 2                               // Minimum characters to send ajax request
 });
                         </pre>
-<br/>
-                        <h4>The server must return JSON array as a response in this structure</h4>
+                        <br/>
+                        <h4>After finishing the search e.x.</h4>
+                        <pre>
+select * from customers where countries like %{$_GET[search]}% or id = {$_GET[value]} 
+
+Hint: I used  or id = %{$_GET[value]}  because you must return the selected row also.
+                        </pre>
+                        <h4>The server must return a JSON array as a response in this structure</h4>
                         <pre>
 [
     [value, label],
@@ -94,8 +104,12 @@ e.x.
         <script src="js/chosen_ajax.js" type="text/javascript"></script>
         <script>
             $(".chosen-select").chosen_ajax({
-                allow_single_deselect: true,
-                ajax_base_url: "http://asamir.local/chosen-search-ajax-plugin/server.php"
+                allow_single_deselect: true, // Normal chosen option
+                // Ajax options
+                ajax_base_url: "http://asamir.local/chosen-search-ajax-plugin/server.php", // Mandatory
+                ajax_method: "POST", // Default GET
+                ajax_data: {type: 'A', extra: 123456789}, // To set extra data + {search & value fields}
+                ajax_min_chars: 2   // Minimum characters to send ajax request
             });
         </script>
     </body>
